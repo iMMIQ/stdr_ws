@@ -12,106 +12,80 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
-  
+
 #include "stdr_gui/stdr_map_metainformation/stdr_gui_rfid_tag.h"
 
-namespace stdr_gui{
-  
-  /**
-  @brief Default contructor
-  @param p [QPoint] The pose of the rfid tag
-  @param name [std::string] The "name" of the rfid tag
-  @return void
-  **/
+namespace stdr_gui {
 
-  CGuiRfidTag::CGuiRfidTag(QPoint p,std::string name, float resolution):
-	CGuiSource(p,name,resolution),
-        message_("")
-  {
-  
-  }
-  
-  /**
-  @brief Default destructor
-  @return void
-  **/
-  CGuiRfidTag::~CGuiRfidTag(void)
-  {
+/**
+@brief Default contructor
+@param p [QPoint] The pose of the rfid tag
+@param name [std::string] The "name" of the rfid tag
+@return void
+**/
 
+CGuiRfidTag::CGuiRfidTag(QPoint p, std::string name, float resolution)
+    : CGuiSource(p, name, resolution), message_("") {}
+
+/**
+@brief Default destructor
+@return void
+**/
+CGuiRfidTag::~CGuiRfidTag(void) {}
+
+/**
+@brief Draws the tag in the map
+@param img [QImage*] The image to draw to
+@return void
+**/
+void CGuiRfidTag::draw(QImage *img) {
+  QPainter painter(img);
+  int step = 3;
+  painter.setPen(QColor(0, 200, 0, 200));
+  for (unsigned int i = 0; i < 4; i++) {
+    painter.drawEllipse(position_.x() - i * step,
+                        img->height() - position_.y() - i * step, 2 * i * step,
+                        2 * i * step);
   }
 
-  /**
-  @brief Draws the tag in the map
-  @param img [QImage*] The image to draw to
-  @return void
-  **/
-  void CGuiRfidTag::draw(QImage *img)
-  {
-    QPainter painter(img);
-    int step = 3;
-    painter.setPen(QColor(0,200,0,200));
-    for(unsigned int i = 0 ; i < 4 ; i++)
-    {
-      painter.drawEllipse(
-        position_.x() - i * step, 
-        img->height() - position_.y() - i * step, 
-        2 * i * step, 
-        2 * i * step);
-    }
+  //!< Draws the label
 
-    //!< Draws the label
-    
-    int text_size = name_.size();
-    
-    //~ painter.setPen(QColor(0,0,0,100 * (2 - visualization_status_)));
-    painter.setPen(QColor(0,0,0,100 * (2)));
-    
-    painter.drawRect(
-      position_.x() + 10,
-      img->height() - position_.y() - 30,
-      3 + text_size * 9,
-      20);
-    
-    //~ painter.setPen(QColor(255,255,255,100 * (2 - visualization_status_)));
-    painter.setPen(QColor(255,255,255,100 * (2)));
-    
-    painter.fillRect(
-      position_.x() + 10,
-      img->height() - position_.y() - 30,
-      3 + text_size * 9,
-      20,
-      QBrush(QColor(0,0,0,100 * (2))));
-      //~ QBrush(QColor(0,0,0,100 * (2 - visualization_status_))));
-    
-    painter.setFont(QFont("Courier New"));
-    painter.drawText(
-      position_.x() + 12,
-      img->height() - position_.y() - 15,
-      QString(name_.c_str()));
-  }
-  
-  /**
-  @brief Sets the tag message
-  @param msg [QString] The message to be set
-  @return void
-  **/
-  void CGuiRfidTag::setMessage(QString msg)
-  {
-    message_ = msg;
-  }
-  
-  /**
-  @brief Returns the tag message
-  @return QString
-  **/
-  QString CGuiRfidTag::getMessage(void)
-  {
-    return message_;
-  }
+  int text_size = name_.size();
+
+  //~ painter.setPen(QColor(0,0,0,100 * (2 - visualization_status_)));
+  painter.setPen(QColor(0, 0, 0, 100 * (2)));
+
+  painter.drawRect(position_.x() + 10, img->height() - position_.y() - 30,
+                   3 + text_size * 9, 20);
+
+  //~ painter.setPen(QColor(255,255,255,100 * (2 - visualization_status_)));
+  painter.setPen(QColor(255, 255, 255, 100 * (2)));
+
+  painter.fillRect(position_.x() + 10, img->height() - position_.y() - 30,
+                   3 + text_size * 9, 20, QBrush(QColor(0, 0, 0, 100 * (2))));
+  //~ QBrush(QColor(0,0,0,100 * (2 - visualization_status_))));
+
+  painter.setFont(QFont("Courier New"));
+  painter.drawText(position_.x() + 12, img->height() - position_.y() - 15,
+                   QString(name_.c_str()));
 }
+
+/**
+@brief Sets the tag message
+@param msg [QString] The message to be set
+@return void
+**/
+void CGuiRfidTag::setMessage(QString msg) { message_ = msg; }
+
+/**
+@brief Returns the tag message
+@return QString
+**/
+QString CGuiRfidTag::getMessage(void) { return message_; }
+}  // namespace stdr_gui

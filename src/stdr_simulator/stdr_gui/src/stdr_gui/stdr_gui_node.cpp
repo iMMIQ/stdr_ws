@@ -12,16 +12,17 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #include <signal.h>
-#include "stdr_gui/stdr_gui_controller.h"
+
 #include "stdr_gui/stdr_gui_application.h"
+#include "stdr_gui/stdr_gui_controller.h"
 
 void signalHandler(int sig);
 
@@ -31,8 +32,7 @@ void signalHandler(int sig);
 @param argv [char] The input arguments
 @return int : 0 for success
 **/
-int main(int argc,char **argv)
-{
+int main(int argc, char **argv) {
   stdr_gui::CStdrApplication app(argc, argv);
   app.setAttribute(Qt::AA_DontShowIconsInMenus, false);
   ros::init(argc, argv, "stdr_gui_node", ros::init_options::NoSigintHandler);
@@ -42,7 +42,7 @@ int main(int argc,char **argv)
   signal(SIGTERM, signalHandler);
   signal(SIGINT, signalHandler);
   signal(SIGHUP, signalHandler);
-  
+
   con.init();
   app.exec();
   return 0;
@@ -51,7 +51,4 @@ int main(int argc,char **argv)
 /**
 @brief Signal handler, kills QApplication
 **/
-void signalHandler(int sig)
-{
-  QApplication::quit();
-}
+void signalHandler(int sig) { QApplication::quit(); }

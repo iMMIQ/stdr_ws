@@ -12,16 +12,15 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef HELPER_H
 #define HELPER_H
-
 
 #define PI 3.141592653589793
 
@@ -33,39 +32,33 @@ namespace stdr_robot {
   @param min_ [float] min angle
   @param max_ [float] max angle
   @return true on success
-  **/ 
-  static bool angCheck(float target_, float min_, float max_) 
+  **/
+static bool angCheck(float target_, float min_, float max_) {
+  int c = 0;
+  c = (target_ + 2 * PI) / (2 * PI);
+  float target = target_ + (1 - c) * PI * 2;
+  c = (min_ + 2 * PI) / (2 * PI);
+  float min = min_ + (1 - c) * PI * 2;
+  c = (max_ + 2 * PI) / (2 * PI);
+  float max = max_ + (1 - c) * PI * 2;
+
+  if (min_ * max_ > 0)  //!< Same sign
   {
-    int c = 0;
-    c = (target_ + 2 * PI) / (2 * PI);
-    float target = target_ + (1 - c) * PI * 2;
-    c = (min_ + 2 * PI) / (2 * PI);
-    float min = min_ + (1 - c) * PI * 2;
-    c = (max_ + 2 * PI) / (2 * PI);
-    float max = max_ + (1 - c) * PI * 2;
-    
-    if(min_ * max_ > 0) //!< Same sign
-    {
-      if(target > min && target < max)
-      {
-        return true;
-      }
+    if (target > min && target < max) {
+      return true;
     }
-    else
-    {
-      max += 2 * PI;
-      if(target > min && target < max)
-      {
-        return true;
-      }
-      target += 2 * PI;
-      if(target > min && target < max)
-      {
-        return true;
-      }
+  } else {
+    max += 2 * PI;
+    if (target > min && target < max) {
+      return true;
     }
-    return false;
+    target += 2 * PI;
+    if (target > min && target < max) {
+      return true;
+    }
   }
+  return false;
+}
 
 }  // namespace stdr_robot
 

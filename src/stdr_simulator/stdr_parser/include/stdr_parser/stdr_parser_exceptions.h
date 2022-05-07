@@ -12,11 +12,11 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #include <stdexcept>
@@ -24,26 +24,23 @@
 #ifndef PARSER_EXCEPTIONS_H
 #define PARSER_EXCEPTIONS_H
 
-namespace stdr_parser
-{
+namespace stdr_parser {
 
 /**
 @class ParserException
-@brief Provides a parser exception. Publicly inherits from std::runtime_error. Used in robot handler.
-**/ 
-class ParserException : public std::runtime_error
-{
-  public:
-    /**
-    @brief Throws an std::runtime_error with a messsage
-    @param errorDescription [const std::string] The error message
-    **/ 
-    ParserException(const std::string errorDescription) : 
-      std::runtime_error(errorDescription) 
-    {
-    }
+@brief Provides a parser exception. Publicly inherits from std::runtime_error.
+Used in robot handler.
+**/
+class ParserException : public std::runtime_error {
+ public:
+  /**
+  @brief Throws an std::runtime_error with a messsage
+  @param errorDescription [const std::string] The error message
+  **/
+  ParserException(const std::string errorDescription)
+      : std::runtime_error(errorDescription) {}
 };
 
-} // end of namespace stdr_parser
+}  // end of namespace stdr_parser
 
 #endif

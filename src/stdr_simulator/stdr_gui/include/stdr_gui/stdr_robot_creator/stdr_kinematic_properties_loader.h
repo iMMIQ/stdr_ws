@@ -12,55 +12,54 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef STDR_KINEMATIC_PROPERTIES_LOADER
 #define STDR_KINEMATIC_PROPERTIES_LOADER
 
-#include "ui_kinematicProperties.h"
 #include "stdr_gui/stdr_tools.h"
+#include "ui_kinematicProperties.h"
 
 /**
 @namespace stdr_gui
 @brief The main namespace for STDR GUI
-**/ 
-namespace stdr_gui
-{
+**/
+namespace stdr_gui {
+/**
+@class CKinematicPropertiesLoader
+@brief Implements the low level functionalities of the Kinematic properties
+widget. Inherits form QWidget and Ui_KinematicProperties (auto created from ui
+file)
+**/
+class CKinematicPropertiesLoader : public QWidget,
+                                   public Ui_KinematicProperties {
+  //------------------------------------------------------------------------//
+ private:
+  //!< Number of input arguments
+  int argc_;
+  //!< Input arguments
+  char** argv_;
+  //------------------------------------------------------------------------//
+ public:
   /**
-  @class CKinematicPropertiesLoader
-  @brief Implements the low level functionalities of the Kinematic properties widget. Inherits form QWidget and Ui_KinematicProperties (auto created from ui file)
-  **/ 
-  class CKinematicPropertiesLoader : 
-    public QWidget, 
-    public Ui_KinematicProperties
-  {
-    //------------------------------------------------------------------------//
-    private:
-      //!< Number of input arguments
-      int   argc_;
-      //!< Input arguments
-      char**   argv_;
-    //------------------------------------------------------------------------//
-    public:
-      /**
-      @brief Default contructor
-      @param argc [int] Number of input arguments
-      @param argv [char**] Input arguments
-      @return void
-      **/
-      CKinematicPropertiesLoader(int argc, char **argv);
-      
-      /**
-      @brief Default destructor
-      @return void
-      **/
-      ~CKinematicPropertiesLoader(void);
-  };  
-}
+  @brief Default contructor
+  @param argc [int] Number of input arguments
+  @param argv [char**] Input arguments
+  @return void
+  **/
+  CKinematicPropertiesLoader(int argc, char** argv);
+
+  /**
+  @brief Default destructor
+  @return void
+  **/
+  ~CKinematicPropertiesLoader(void);
+};
+}  // namespace stdr_gui
 
 #endif

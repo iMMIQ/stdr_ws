@@ -12,55 +12,54 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef STDR_CO2_PROPERTIES_LOADER
 #define STDR_CO2_PROPERTIES_LOADER
 
-#include "ui_co2SensorProperties.h"
 #include "stdr_gui/stdr_tools.h"
+#include "ui_co2SensorProperties.h"
 
 /**
 @namespace stdr_gui
 @brief The main namespace for STDR GUI
-**/ 
-namespace stdr_gui
-{
+**/
+namespace stdr_gui {
+/**
+@class CRfidAntennaPropertiesLoader
+@brief Implements the low level functionalities of the Rfid antenna properties
+widget. Inherits form QWidget and Ui_RfidAntennaProperties (auto created from ui
+file)
+**/
+class CCO2SensorPropertiesLoader : public QWidget,
+                                   public Ui_CO2SensorProperties {
+  //------------------------------------------------------------------------//
+ private:
+  //!< Number of input arguments
+  int argc_;
+  //!< Input arguments
+  char** argv_;
+  //------------------------------------------------------------------------//
+ public:
   /**
-  @class CRfidAntennaPropertiesLoader
-  @brief Implements the low level functionalities of the Rfid antenna properties widget. Inherits form QWidget and Ui_RfidAntennaProperties (auto created from ui file)
-  **/ 
-  class CCO2SensorPropertiesLoader : 
-    public QWidget, 
-    public Ui_CO2SensorProperties
-  {
-    //------------------------------------------------------------------------//
-    private:
-      //!< Number of input arguments
-      int   argc_;
-      //!< Input arguments
-      char**  argv_;
-    //------------------------------------------------------------------------//
-    public:
-      /**
-      @brief Default contructor
-      @param argc [int] Number of input arguments
-      @param argv [char**] Input arguments
-      @return void
-      **/
-      CCO2SensorPropertiesLoader(int argc, char **argv);
-      
-      /**
-      @brief Default destructor
-      @return void
-      **/
-      ~CCO2SensorPropertiesLoader(void);
-  };  
-}
+  @brief Default contructor
+  @param argc [int] Number of input arguments
+  @param argv [char**] Input arguments
+  @return void
+  **/
+  CCO2SensorPropertiesLoader(int argc, char** argv);
+
+  /**
+  @brief Default destructor
+  @return void
+  **/
+  ~CCO2SensorPropertiesLoader(void);
+};
+}  // namespace stdr_gui
 
 #endif

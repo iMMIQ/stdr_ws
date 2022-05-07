@@ -12,27 +12,24 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #include "stdr_gui/stdr_robot_creator/stdr_sonar_properties_loader.h"
 
-namespace stdr_gui
-{
-  /**
-  @brief Default contructor
-  @param argc [int] Number of input arguments
-  @param argv [char**] Input arguments
-  @return void
-  **/
-  CSonarPropertiesLoader::CSonarPropertiesLoader(int argc, char **argv):
-    argc_(argc),
-    argv_(argv)
-  {
-    setupUi(this);
-  }
+namespace stdr_gui {
+/**
+@brief Default contructor
+@param argc [int] Number of input arguments
+@param argv [char**] Input arguments
+@return void
+**/
+CSonarPropertiesLoader::CSonarPropertiesLoader(int argc, char **argv)
+    : argc_(argc), argv_(argv) {
+  setupUi(this);
 }
+}  // namespace stdr_gui

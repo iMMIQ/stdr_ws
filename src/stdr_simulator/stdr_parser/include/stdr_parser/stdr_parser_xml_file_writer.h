@@ -12,11 +12,11 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef STDR_PARSER_XML_FILE_WRITER
@@ -27,42 +27,38 @@
 /**
 @namespace stdr_parser
 @brief The main namespace for STDR parser
-**/ 
-namespace stdr_parser
-{
+**/
+namespace stdr_parser {
+/**
+@class FileWriter
+@brief Writes a node tree to an xml file
+**/
+class XmlFileWriter {
+ private:
   /**
-  @class FileWriter
-  @brief Writes a node tree to an xml file
-  **/ 
-  class XmlFileWriter
-  {
-    private:
-     
-      /**
-      @brief Default constructor
-      @return void
-      **/
-      XmlFileWriter(void);
-      
-    public:
+  @brief Default constructor
+  @return void
+  **/
+  XmlFileWriter(void);
 
-      /**
-      @brief Creates an xml file from a message - template member function
-      @param msg [T] The message
-      @param file_name [std::string] The xml file name to write the message
-      @return void
-      **/
-      template <class T>
-      static void messageToFile(T msg,std::string file_name);
-      
-      /**
-      @brief Creates an xml element from a msg - template member function
-      @param msg [T] The message
-      @param base [TiXmlNode*] The xml node to write the message
-      @return void
-      **/
-      template <class T>
-      static void messageToXmlElement(T msg,TiXmlNode* base);
-  };
-}
+ public:
+  /**
+  @brief Creates an xml file from a message - template member function
+  @param msg [T] The message
+  @param file_name [std::string] The xml file name to write the message
+  @return void
+  **/
+  template <class T>
+  static void messageToFile(T msg, std::string file_name);
+
+  /**
+  @brief Creates an xml element from a msg - template member function
+  @param msg [T] The message
+  @param base [TiXmlNode*] The xml node to write the message
+  @return void
+  **/
+  template <class T>
+  static void messageToXmlElement(T msg, TiXmlNode* base);
+};
+}  // namespace stdr_parser
 #endif

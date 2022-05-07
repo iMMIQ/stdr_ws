@@ -19,7 +19,6 @@
    * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
-
 #include <stdr_server/stdr_server.h>
 
 /**
@@ -29,7 +28,6 @@
 @return int
 **/
 int main(int argc, char** argv) {
-
   ros::init(argc, argv, "stdr_server");
 
   stdr_server::Server server(argc, argv);

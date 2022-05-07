@@ -12,61 +12,48 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
-  
+
 #include "stdr_gui/stdr_map_metainformation/stdr_gui_source.h"
 
-namespace stdr_gui{
+namespace stdr_gui {
 
-  /**
-  @brief Default contructor
-  @param p [QPoint] The pose of the rfid tag
-  @param name [std::string] The "name" of the rfid tag
-  @return void
-  **/
-  CGuiSource::CGuiSource(QPoint p,std::string name, float resolution):
-    position_(p),
-    name_(name),
-    resolution_(resolution)
-  {
+/**
+@brief Default contructor
+@param p [QPoint] The pose of the rfid tag
+@param name [std::string] The "name" of the rfid tag
+@return void
+**/
+CGuiSource::CGuiSource(QPoint p, std::string name, float resolution)
+    : position_(p), name_(name), resolution_(resolution) {}
 
-  }
-  
-  /**
-  @brief Default destructor
-  @return void
-  **/
-  CGuiSource::~CGuiSource(void)
-  {
-    
-  }
+/**
+@brief Default destructor
+@return void
+**/
+CGuiSource::~CGuiSource(void) {}
 
-  /**
-  @brief Returns the "name" of the source
-  @return std::string 
-  **/
-  std::string CGuiSource::getName(void)
-  {
-    return name_;
-  }
-  
-  /**
-  @brief Checks proximity to a point
-  @param p [QPoint] The proximity point to check
-  @return bool : True if tag is close to p
-  **/
-  bool CGuiSource::checkProximity(QPoint p)
-  {
-    float dx = p.x() * resolution_ - position_.x() * resolution_;
-    float dy = p.y() * resolution_ - position_.y() * resolution_;
-    float dist = sqrt( pow(dx,2) + pow(dy,2) );
-    return dist <= 0.3;
-  }
+/**
+@brief Returns the "name" of the source
+@return std::string
+**/
+std::string CGuiSource::getName(void) { return name_; }
 
+/**
+@brief Checks proximity to a point
+@param p [QPoint] The proximity point to check
+@return bool : True if tag is close to p
+**/
+bool CGuiSource::checkProximity(QPoint p) {
+  float dx = p.x() * resolution_ - position_.x() * resolution_;
+  float dy = p.y() * resolution_ - position_.y() * resolution_;
+  float dist = sqrt(pow(dx, 2) + pow(dy, 2));
+  return dist <= 0.3;
 }
 
+}  // namespace stdr_gui

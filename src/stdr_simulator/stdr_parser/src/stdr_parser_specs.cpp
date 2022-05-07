@@ -12,38 +12,33 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #include "stdr_parser/stdr_parser_specs.h"
 
-namespace stdr_parser
-{
-  /**
-  @brief Default constructor
-  @return void
-  **/
-  ElSpecs::ElSpecs(void)
-  {
-    required.clear();
-    allowed.clear();
-  }
-    
-  //!< Static member variable initialization
-  std::map<std::string,ElSpecs> Specs::specs = std::map<std::string,ElSpecs>();
-  //!< List of non-mergable tags. Read from stdr_multiple_allowed.xml
-  std::set<std::string> Specs::non_mergable_tags = std::set<std::string>();
-  
-  /**
-  @brief Default constructor
-  @return void
-  **/
-  Specs::Specs(void)
-  {
-    specs.clear();
-  }
+namespace stdr_parser {
+/**
+@brief Default constructor
+@return void
+**/
+ElSpecs::ElSpecs(void) {
+  required.clear();
+  allowed.clear();
 }
+
+//!< Static member variable initialization
+std::map<std::string, ElSpecs> Specs::specs = std::map<std::string, ElSpecs>();
+//!< List of non-mergable tags. Read from stdr_multiple_allowed.xml
+std::set<std::string> Specs::non_mergable_tags = std::set<std::string>();
+
+/**
+@brief Default constructor
+@return void
+**/
+Specs::Specs(void) { specs.clear(); }
+}  // namespace stdr_parser

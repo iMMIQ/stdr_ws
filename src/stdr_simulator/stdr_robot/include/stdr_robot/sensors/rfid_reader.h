@@ -12,80 +12,77 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef RFID_READER_H
 #define RFID_READER_H
 
-#include <stdr_robot/sensors/sensor_base.h>
-#include <stdr_robot/sensors/helper.h>
-#include <stdr_msgs/RfidSensorMsg.h>
 #include <stdr_msgs/RfidSensorMeasurementMsg.h>
+#include <stdr_msgs/RfidSensorMsg.h>
 #include <stdr_msgs/RfidTagVector.h>
+#include <stdr_robot/sensors/helper.h>
+#include <stdr_robot/sensors/sensor_base.h>
 
 /**
 @namespace stdr_robot
 @brief The main namespace for STDR Robot
-**/ 
+**/
 namespace stdr_robot {
 
+/**
+@class Sonar
+@brief A class that provides sonar implementation. Inherits publicly Sensor
+**/
+class RfidReader : public Sensor {
+ public:
   /**
-  @class Sonar
-  @brief A class that provides sonar implementation. Inherits publicly Sensor
-  **/ 
-  class RfidReader : public Sensor {
+  @brief Default constructor
+  @param map [const nav_msgs::OccupancyGrid&] An occupancy grid map
+  @param msg [const stdr_msgs::RfidSensorMsg&] The rfid reader \
+  description message
+  @param name [const std::string&] The sensor frame id without the base
+  @param n [ros::NodeHandle&] The ROS node handle
+  @return void
+  **/
+  RfidReader(const nav_msgs::OccupancyGrid& map,
+             const stdr_msgs::RfidSensorMsg& msg, const std::string& name,
+             ros::NodeHandle& n);
 
-    public:
-      /**
-      @brief Default constructor
-      @param map [const nav_msgs::OccupancyGrid&] An occupancy grid map
-      @param msg [const stdr_msgs::RfidSensorMsg&] The rfid reader \
-      description message
-      @param name [const std::string&] The sensor frame id without the base
-      @param n [ros::NodeHandle&] The ROS node handle
-      @return void
-      **/ 
-      RfidReader(const nav_msgs::OccupancyGrid& map,
-        const stdr_msgs::RfidSensorMsg& msg, 
-        const std::string& name, 
-        ros::NodeHandle& n);
-      
-      /**
-      @brief Updates the sensor measurements
-      @return void
-      **/ 
-      virtual void updateSensorCallback();
-      
-      /**
-      @brief Default destructor
-      @return void
-      **/ 
-      ~RfidReader(void);
-      
-      /**
-      @brief Receives the existent rfid tags
-      @param msg [const stdr_msgs::RfidTagVector&] The rfid tags message
-      @return void
-      **/
-      void receiveRfids(const stdr_msgs::RfidTagVector& msg);
+  /**
+  @brief Updates the sensor measurements
+  @return void
+  **/
+  virtual void updateSensorCallback();
 
-    private:
+  /**
+  @brief Default destructor
+  @return void
+  **/
+  ~RfidReader(void);
 
-      //!< Sonar rfid reader description
-      stdr_msgs::RfidSensorMsg _description;
-      
-      //!< ROS subscriber for rfids
-      ros::Subscriber rfids_subscriber_;
-      
-      //!< The currently existent RFID tags
-      stdr_msgs::RfidTagVector rfid_tags_;
-  };
+  /**
+  @brief Receives the existent rfid tags
+  @param msg [const stdr_msgs::RfidTagVector&] The rfid tags message
+  @return void
+  **/
+  void receiveRfids(const stdr_msgs::RfidTagVector& msg);
 
-}
+ private:
+  //!< Sonar rfid reader description
+  stdr_msgs::RfidSensorMsg _description;
+
+  //!< ROS subscriber for rfids
+  ros::Subscriber rfids_subscriber_;
+
+  //!< The currently existent RFID tags
+  stdr_msgs::RfidTagVector rfid_tags_;
+};
+
+}  // namespace stdr_robot
 
 #endif

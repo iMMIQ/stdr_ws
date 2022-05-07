@@ -12,59 +12,55 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef STDR_PARSER_MSG_CREATOR
 #define STDR_PARSER_MSG_CREATOR
 
-#include "stdr_parser/stdr_parser_node.h"
 #include <sstream>
+
+#include "stdr_parser/stdr_parser_node.h"
 
 /**
 @namespace stdr_parser
 @brief The main namespace for STDR parser
-**/ 
-namespace stdr_parser
-{
-  
-  /**
-  @class MessageCreator
-  @brief Creates STDR messages from a STDR tree
-  **/ 
-  class MessageCreator
-  {
-    private:
-     
-      /**
-      @brief Default constructor
-      @return void
-      **/
-      MessageCreator(void);
-      
-    public:
-      
-      /**
-      @brief Creates a pose message from a parsed file
-      @param n [Node*] The root node
-      @return geometry_msgs::Pose2D
-      **/
-      template <typename T>
-      static T createMessage(Node *n,unsigned int id);
+**/
+namespace stdr_parser {
 
-      template <typename T>
-      static T stringToType(std::string s)
-      {
-        std::stringstream str;
-        str << s;
-        T temp;
-        str >> temp;
-        return temp;
-      }
-  };
-}
+/**
+@class MessageCreator
+@brief Creates STDR messages from a STDR tree
+**/
+class MessageCreator {
+ private:
+  /**
+  @brief Default constructor
+  @return void
+  **/
+  MessageCreator(void);
+
+ public:
+  /**
+  @brief Creates a pose message from a parsed file
+  @param n [Node*] The root node
+  @return geometry_msgs::Pose2D
+  **/
+  template <typename T>
+  static T createMessage(Node *n, unsigned int id);
+
+  template <typename T>
+  static T stringToType(std::string s) {
+    std::stringstream str;
+    str << s;
+    T temp;
+    str >> temp;
+    return temp;
+  }
+};
+}  // namespace stdr_parser
 #endif

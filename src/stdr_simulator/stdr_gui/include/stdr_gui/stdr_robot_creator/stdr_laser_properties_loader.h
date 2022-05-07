@@ -12,55 +12,52 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef STDR_LASER_PROPERTIES_LOADER
 #define STDR_LASER_PROPERTIES_LOADER
 
-#include "ui_laserProperties.h"
 #include "stdr_gui/stdr_tools.h"
+#include "ui_laserProperties.h"
 
 /**
 @namespace stdr_gui
 @brief The main namespace for STDR GUI
-**/ 
-namespace stdr_gui
-{
+**/
+namespace stdr_gui {
+/**
+@class CLaserPropertiesLoader
+@brief Implements the low level functionalities of the Laser properties widget.
+Inherits form QWidget and Ui_LaserProperties (auto created from ui file)
+**/
+class CLaserPropertiesLoader : public QWidget, public Ui_LaserProperties {
+  //------------------------------------------------------------------------//
+ private:
+  //!< Number of input arguments
+  int argc_;
+  //!< Input arguments
+  char** argv_;
+  //------------------------------------------------------------------------//
+ public:
   /**
-  @class CLaserPropertiesLoader
-  @brief Implements the low level functionalities of the Laser properties widget. Inherits form QWidget and Ui_LaserProperties (auto created from ui file)
-  **/ 
-  class CLaserPropertiesLoader : 
-    public QWidget, 
-    public Ui_LaserProperties
-  {
-    //------------------------------------------------------------------------//
-    private:
-      //!< Number of input arguments
-      int   argc_;
-      //!< Input arguments
-      char**  argv_;
-    //------------------------------------------------------------------------//
-    public:
-      /**
-      @brief Default contructor
-      @param argc [int] Number of input arguments
-      @param argv [char**] Input arguments
-      @return void
-      **/
-      CLaserPropertiesLoader(int argc, char **argv);
-      
-      /**
-      @brief Default destructor
-      @return void
-      **/
-      ~CLaserPropertiesLoader(void);
-  };  
-}
+  @brief Default contructor
+  @param argc [int] Number of input arguments
+  @param argv [char**] Input arguments
+  @return void
+  **/
+  CLaserPropertiesLoader(int argc, char** argv);
+
+  /**
+  @brief Default destructor
+  @return void
+  **/
+  ~CLaserPropertiesLoader(void);
+};
+}  // namespace stdr_gui
 
 #endif

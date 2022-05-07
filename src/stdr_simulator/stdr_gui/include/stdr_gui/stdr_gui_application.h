@@ -12,50 +12,47 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef STDR_APPLICATION
 #define STDR_APPLICATION
 
-#include <QDebug>
 #include <QApplication>
+#include <QDebug>
 
 /**
 @namespace stdr_gui
 @brief The main namespace for STDR GUI
-**/ 
-namespace stdr_gui
-{
+**/
+namespace stdr_gui {
+/**
+@class CStdrApplication
+@brief Inherits QApplications. Created to overload the notify function.
+**/
+class CStdrApplication : public QApplication {
+ public:
   /**
-  @class CStdrApplication
-  @brief Inherits QApplications. Created to overload the notify function.
-  **/ 
-  class CStdrApplication:public QApplication
-  {
-    public:
-    
-      /**
-      @brief Default contructor
-      @param argc [int&] Number of input arguments
-      @param argv [char **] Input arguments
-      @return void
-      **/
-      CStdrApplication(int &argc,char **argv);
-      
-      /**
-      @brief Called at every Qt event 
-      @param receiver [QObject*] The event receiver
-      @param event [QEvent*] The event triggered
-      @return bool : True if receiver was notified about event
-      **/
-      bool notify(QObject * receiver, QEvent * event);
-  };
+  @brief Default contructor
+  @param argc [int&] Number of input arguments
+  @param argv [char **] Input arguments
+  @return void
+  **/
+  CStdrApplication(int &argc, char **argv);
 
-}
+  /**
+  @brief Called at every Qt event
+  @param receiver [QObject*] The event receiver
+  @param event [QEvent*] The event triggered
+  @return bool : True if receiver was notified about event
+  **/
+  bool notify(QObject *receiver, QEvent *event);
+};
+
+}  // namespace stdr_gui
 
 #endif

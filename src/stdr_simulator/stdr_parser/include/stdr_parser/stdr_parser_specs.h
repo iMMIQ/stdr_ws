@@ -12,11 +12,11 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef STDR_PARSER_SPECS
@@ -27,46 +27,43 @@
 /**
 @namespace stdr_parser
 @brief The main namespace for STDR parser
-**/ 
-namespace stdr_parser
-{
+**/
+namespace stdr_parser {
+/**
+@struct ElSpecs
+@brief An element of Specs - represents a valid tag
+**/
+struct ElSpecs {
   /**
-  @struct ElSpecs
-  @brief An element of Specs - represents a valid tag
-  **/ 
-  struct ElSpecs
-  {
-    /**
-    @brief Default constructor
-    @return void
-    **/
-    ElSpecs(void);
-    
-    //!< The required tags for the tag
-    std::set<std::string> required;
-    //!< The allowed tags for the tag
-    std::set<std::string> allowed;
-    //!< Default value for the node (if it is a value)
-    std::string default_value;
-  };
-  
+  @brief Default constructor
+  @return void
+  **/
+  ElSpecs(void);
+
+  //!< The required tags for the tag
+  std::set<std::string> required;
+  //!< The allowed tags for the tag
+  std::set<std::string> allowed;
+  //!< Default value for the node (if it is a value)
+  std::string default_value;
+};
+
+/**
+@struct Specs
+@brief The STDR parser specifications
+**/
+struct Specs {
   /**
-  @struct Specs
-  @brief The STDR parser specifications
-  **/ 
-  struct Specs
-  {
-    /**
-    @brief Default constructor
-    @return void
-    **/
-    Specs(void);
-    
-    //!< std::map of valid STDR tags
-    static std::map<std::string,ElSpecs> specs;
-    
-    //!< List of non-mergable tags. Read from stdr_multiple_allowed.xml
-    static std::set<std::string> non_mergable_tags;
-  };
-}
+  @brief Default constructor
+  @return void
+  **/
+  Specs(void);
+
+  //!< std::map of valid STDR tags
+  static std::map<std::string, ElSpecs> specs;
+
+  //!< List of non-mergable tags. Read from stdr_multiple_allowed.xml
+  static std::set<std::string> non_mergable_tags;
+};
+}  // namespace stdr_parser
 #endif

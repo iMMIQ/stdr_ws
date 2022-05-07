@@ -12,13 +12,12 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
-
 
 #ifndef STDR_GUI_THERMAL_SOURCE_CONTAINER
 #define STDR_GUI_THERMAL_SOURCE_CONTAINER
@@ -28,57 +27,55 @@
 /**
 @namespace stdr_gui
 @brief The main namespace for STDR GUI
-**/ 
-namespace stdr_gui
-{
-  /**
-  @class CGuiThermalSource
-  @brief Implements the functionalities of a thermal source
-  **/ 
-  class CGuiThermalSource : public CGuiSource
-  {
-    //------------------------------------------------------------------------//
-    private:
-      //!< The degrees of the thermal source
-      float degrees_;
+**/
+namespace stdr_gui {
+/**
+@class CGuiThermalSource
+@brief Implements the functionalities of a thermal source
+**/
+class CGuiThermalSource : public CGuiSource {
+  //------------------------------------------------------------------------//
+ private:
+  //!< The degrees of the thermal source
+  float degrees_;
 
-    //------------------------------------------------------------------------//
-    public:
-      /**
-      @brief Default contructor
-      @param p [QPoint] The pose of the rfid tag
-      @param name [std::string] The "name" of the rfid tag
-      @param resolution [float] The map's resolution
-      @return void
-      **/
-      CGuiThermalSource(QPoint p,std::string name, float resolution);
-      
-      /**
-      @brief Default destructor
-      @return void
-      **/
-      ~CGuiThermalSource(void);
-      
-      /**
-      @brief Draws the tag in the map
-      @param img [QImage*] The image to draw to
-      @return void
-      **/
-      virtual void draw(QImage *img);
-      
-      /**
-      @brief Sets the tag message
-      @param msg [QString] The message to be set
-      @return void
-      **/
-      void setDegrees(float degrees);
-      
-      /**
-      @brief Returns the tag message
-      @return QString
-      **/
-      float getDegrees(void);
-  };  
-}
+  //------------------------------------------------------------------------//
+ public:
+  /**
+  @brief Default contructor
+  @param p [QPoint] The pose of the rfid tag
+  @param name [std::string] The "name" of the rfid tag
+  @param resolution [float] The map's resolution
+  @return void
+  **/
+  CGuiThermalSource(QPoint p, std::string name, float resolution);
+
+  /**
+  @brief Default destructor
+  @return void
+  **/
+  ~CGuiThermalSource(void);
+
+  /**
+  @brief Draws the tag in the map
+  @param img [QImage*] The image to draw to
+  @return void
+  **/
+  virtual void draw(QImage *img);
+
+  /**
+  @brief Sets the tag message
+  @param msg [QString] The message to be set
+  @return void
+  **/
+  void setDegrees(float degrees);
+
+  /**
+  @brief Returns the tag message
+  @return QString
+  **/
+  float getDegrees(void);
+};
+}  // namespace stdr_gui
 
 #endif

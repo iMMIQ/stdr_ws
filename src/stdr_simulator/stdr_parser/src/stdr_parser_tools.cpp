@@ -12,58 +12,53 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #include "stdr_parser/stdr_parser_tools.h"
 
-namespace stdr_parser
-{
-  /**
-  @brief Explodes a string based on a delimiter
-  @param s [std::string] The input string
-  @param delimiter [char] The delimiter
-  @return std::set<std::string> : An ensemble of strings
-  **/
-  std::set<std::string> explodeString(std::string s,char delimiter)
-  {
-    std::set<std::string> ret;
-    int prev = 0, next = 0;
-    next = s.find(delimiter,prev);
-    while(next != std::string::npos)
-    {
-      ret.insert(s.substr(prev , next - prev));
-      prev = next + 1;
-      next = s.find(delimiter,prev);
-    }
-    ret.insert(s.substr(prev , s.size() - prev));
-    return ret;
+namespace stdr_parser {
+/**
+@brief Explodes a string based on a delimiter
+@param s [std::string] The input string
+@param delimiter [char] The delimiter
+@return std::set<std::string> : An ensemble of strings
+**/
+std::set<std::string> explodeString(std::string s, char delimiter) {
+  std::set<std::string> ret;
+  int prev = 0, next = 0;
+  next = s.find(delimiter, prev);
+  while (next != std::string::npos) {
+    ret.insert(s.substr(prev, next - prev));
+    prev = next + 1;
+    next = s.find(delimiter, prev);
   }
-  
-  /**
-  @brief Extracts the filename from an absolute path
-  @param s [std::string] The input string
-  @return std::string
-  **/
-  std::string extractFilename(std::string s)
-  {
-    int n = s.find_last_of('/');
-    return s.substr(n + 1, s.size() - n - 1);
-  }
-
-  /**
-  @brief Extracts the directory from an absolute path. It does the
-  same functionality as libgen's dirname but for std::string objects
-  @param s [std::string] The input string
-  @return std::string
-  **/
-  std::string extractDirname(std::string s)
-  {
-    int n = s.find_last_of('/');
-    return s.substr(0, n); // exclude trailing '/'
-  }
+  ret.insert(s.substr(prev, s.size() - prev));
+  return ret;
 }
+
+/**
+@brief Extracts the filename from an absolute path
+@param s [std::string] The input string
+@return std::string
+**/
+std::string extractFilename(std::string s) {
+  int n = s.find_last_of('/');
+  return s.substr(n + 1, s.size() - n - 1);
+}
+
+/**
+@brief Extracts the directory from an absolute path. It does the
+same functionality as libgen's dirname but for std::string objects
+@param s [std::string] The input string
+@return std::string
+**/
+std::string extractDirname(std::string s) {
+  int n = s.find_last_of('/');
+  return s.substr(0, n);  // exclude trailing '/'
+}
+}  // namespace stdr_parser

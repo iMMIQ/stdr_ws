@@ -12,49 +12,46 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #ifndef STDR_ROBOT_FOOTPRINT_LOADER
 #define STDR_ROBOT_FOOTPRINT_LOADER
 
-#include "ui_robotFootprint.h"
 #include "stdr_gui/stdr_tools.h"
+#include "ui_robotFootprint.h"
 
 /**
 @namespace stdr_gui
 @brief The main namespace for STDR GUI
-**/ 
-namespace stdr_gui
-{
+**/
+namespace stdr_gui {
+/**
+@class CRobotPropertiesLoader
+@brief Implements the low level functionalities of the robot footprint widget.
+Inherits form QWidget and Ui_RobotFootprint (auto created from ui file)
+**/
+class CRobotFootprintLoader : public QWidget, public Ui_RobotFootprint {
+  //------------------------------------------------------------------------//
+ private:
+  //!< Number of input arguments
+  int argc_;
+  //!< Input arguments
+  char** argv_;
+  //------------------------------------------------------------------------//
+ public:
   /**
-  @class CRobotPropertiesLoader
-  @brief Implements the low level functionalities of the robot footprint widget. Inherits form QWidget and Ui_RobotFootprint (auto created from ui file)
-  **/ 
-  class CRobotFootprintLoader : 
-    public QWidget, 
-    public Ui_RobotFootprint
-  {
-    //------------------------------------------------------------------------//
-    private:
-      //!< Number of input arguments
-      int   argc_;
-      //!< Input arguments
-      char**  argv_;
-    //------------------------------------------------------------------------//
-    public:
-      /**
-      @brief Default contructor
-      @param argc [int] Number of input arguments
-      @param argv [char**] Input arguments
-      @return void
-      **/
-      CRobotFootprintLoader(int argc, char **argv);
-  };  
-}
+  @brief Default contructor
+  @param argc [int] Number of input arguments
+  @param argv [char**] Input arguments
+  @return void
+  **/
+  CRobotFootprintLoader(int argc, char** argv);
+};
+}  // namespace stdr_gui
 
 #endif

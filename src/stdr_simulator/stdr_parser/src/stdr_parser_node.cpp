@@ -12,112 +12,91 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
-   
-   Authors : 
+
+   Authors :
    * Manos Tsardoulias, etsardou@gmail.com
    * Aris Thallas, aris.thallas@gmail.com
-   * Chris Zalidis, zalidis@gmail.com 
+   * Chris Zalidis, zalidis@gmail.com
 ******************************************************************************/
 
 #include "stdr_parser/stdr_parser_node.h"
 
-namespace stdr_parser
-{
-  /**
-  @brief Default constructor
-  @return void
-  **/
-  Node::Node(void)
-  {
-    priority = 0;
-  }
-  
-  Node::~Node(void)
-  {
-	this->unallocateChildren();
-  }
+namespace stdr_parser {
+/**
+@brief Default constructor
+@return void
+**/
+Node::Node(void) { priority = 0; }
 
-  /**
-  @brief Checks a node if a specific filename exists
-  @return void
-  **/
-  bool Node::checkForFilename(std::string base)
-  {
-    if(elements.size() == 1)
-    {
-      if(elements[0]->tag == base)
-      {
-        return true;
-      }
-    }
-    return false;
-  }
-  
-  /**
-  @brief Searches for a tag in the specific node
-  @param tag [std::string] The tag to search for
-  @return std::vector<int> : The indexes in elements where tag is found
-  **/
-  std::vector<int> Node::getTag(std::string tag)
-  {
-    std::vector<int> ret;
-    for(unsigned int i = 0 ; i < elements.size() ; i++)
-    {
-      if(elements[i]->tag == tag)
-      {
-        ret.push_back(i);
-      }
-    }
-    return ret;
-  }
-  
-  /**
-  @brief Increases the priority of the node
-  @return void
-  **/
-  void Node::increasePriority(void)
-  {
-    priority ++;
-    for(unsigned int i = 0 ; i < elements.size() ; i++)
-    {
-      elements[i]->increasePriority();
-    }
-  }
-  
-  /**
-  @brief Debug recursive function - Prints the xml tree
-  @param n [Node*] The stdr xml tree node to begin
-  @param indent [std::string] The indentation for the specific node
-  @return void
-  **/
-  void Node::printParsedXml(Node *n,std::string indent)
-  {
-    if(n->value != "")
-    {  
-      ROS_ERROR("%s- '%s' (%d) - %d %s",indent.c_str(),n->value.c_str(),
-        n->priority, n->file_row, extractFilename(n->file_origin).c_str());
-    }
-    else
-    {
-      ROS_ERROR("%s[%s] (%d) - %d %s",indent.c_str(),n->tag.c_str(),
-        n->priority, n->file_row, extractFilename(n->file_origin).c_str());
-    }  
-    for(unsigned int i = 0 ; i < n->elements.size() ; i++)
-    {
-      printParsedXml(n->elements[i],indent+std::string("| "));
-    }
-  }
-  
-  /**
-  * @brief Unallocates the memory of the node's children
-  * @return void
-  */
-  void Node::unallocateChildren(void)
-  {
-    for(unsigned int i = 0 ; i < elements.size() ; i++)
-    {
+Node::~Node(void) { this->unallocateChildren(); }
 
-      delete elements[i];
+/**
+@brief Checks a node if a specific filename exists
+@return void
+**/
+bool Node::checkForFilename(std::string base) {
+  if (elements.size() == 1) {
+    if (elements[0]->tag == base) {
+      return true;
     }
+  }
+  return false;
+}
+
+/**
+@brief Searches for a tag in the specific node
+@param tag [std::string] The tag to search for
+@return std::vector<int> : The indexes in elements where tag is found
+**/
+std::vector<int> Node::getTag(std::string tag) {
+  std::vector<int> ret;
+  for (unsigned int i = 0; i < elements.size(); i++) {
+    if (elements[i]->tag == tag) {
+      ret.push_back(i);
+    }
+  }
+  return ret;
+}
+
+/**
+@brief Increases the priority of the node
+@return void
+**/
+void Node::increasePriority(void) {
+  priority++;
+  for (unsigned int i = 0; i < elements.size(); i++) {
+    elements[i]->increasePriority();
   }
 }
+
+/**
+@brief Debug recursive function - Prints the xml tree
+@param n [Node*] The stdr xml tree node to begin
+@param indent [std::string] The indentation for the specific node
+@return void
+**/
+void Node::printParsedXml(Node *n, std::string indent) {
+  if (n->value != "") {
+    ROS_ERROR("%s- '%s' (%d) - %d %s", indent.c_str(), n->value.c_str(),
+              n->priority, n->file_row,
+              extractFilename(n->file_origin).c_str());
+  } else {
+    ROS_ERROR("%s[%s] (%d) - %d %s", indent.c_str(), n->tag.c_str(),
+              n->priority, n->file_row,
+              extractFilename(n->file_origin).c_str());
+  }
+  for (unsigned int i = 0; i < n->elements.size(); i++) {
+    printParsedXml(n->elements[i], indent + std::string("| "));
+  }
+}
+
+/**
+ * @brief Unallocates the memory of the node's children
+ * @return void
+ */
+void Node::unallocateChildren(void) {
+  for (unsigned int i = 0; i < elements.size(); i++) {
+    delete elements[i];
+  }
+}
+}  // namespace stdr_parser
