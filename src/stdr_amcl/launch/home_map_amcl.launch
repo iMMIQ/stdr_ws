@@ -38,15 +38,15 @@
     <param name="recovery_alpha_slow" value="0.001"/>
     <param name="recovery_alpha_fast" value="0.1"/>
     <!-- set particles init pose to robot pose -->
-    <param name="initial_pose_x" value="1.0"/>
-    <param name="initial_pose_y" value="2.0"/>
-    <param name="initial_pose_a" value="0.0"/>
+    <param name="initial_pose_x" value="5.0"/>
+    <param name="initial_pose_y" value="10.0"/>
+    <param name="initial_pose_a" value="-1.57"/>
     <param name="initial_cov_xx" value="0.25"/>
     <param name="initial_cov_yy" value="0.25"/>
     <param name="initial_cov_aa" value="0.068538917"/> <!-- pi/12 * pi/12 -->
     <param name="gui_publish_rate" value="-1.0"/>
     <param name="save_pose_rate"   value="0.5"/>
-    <param name="use_map_topic"    value="true"/>
+    <param name="use_map_topic"    value="false"/>
     <param name="first_map_only"   value="false"/>
  
     <!-- laser model parameters -->
