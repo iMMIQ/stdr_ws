@@ -12,7 +12,6 @@
   <arg name="base_frame" default="robot0" />
   <arg name="map_frame" default="map" />
   <arg name="odom_frame" default="map_static" />
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find stdr_gmapping)/maps/home.yaml"/>
 
   <!-- startup stdr simulator with robot0 -->
   <include file="$(find stdr_launchers)/launch/home_map_robot_gui.launch" />
@@ -68,5 +67,8 @@
       <param name="transform_publish_period"  value="0.05" />
       <param name="occ_thresh" value="0.25" />
   </node>
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find stdr_gmapping)/maps/home.yaml"/>
+  
 </launch>
 
