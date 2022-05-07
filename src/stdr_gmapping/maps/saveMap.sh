@@ -6,5 +6,5 @@
 # History:
 #  20180524: initial this bash file.
 
-rosrun map_server map_saver map:=/gmapping/map -f home
+rosrun map_server map_saver map:=/gmapping/map -f mymap
 exit 0
