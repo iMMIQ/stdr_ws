@@ -13,7 +13,7 @@
   <arg name="odom_frame" default="map_static" />
 
   <!-- startup stdr simulator with robot0 -->
-  <include file="$(find stdr_launchers)/launch/server_with_map_and_gui_plus_robot.launch" />
+  <include file="$(find stdr_launchers)/launch/home_map_robot_gui.launch" />
 
   <!-- startup rviz to show gmapping process -->
   <node name="rviz" type="rviz" pkg="rviz" args="-d $(find stdr_gmapping)/rviz/stdr_gmapping_config.rviz" />
