@@ -68,7 +68,7 @@
       <param name="occ_thresh" value="0.25" />
   </node>
 
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find stdr_gmapping)/maps/home.yaml"/>
-  
+  <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find stdr_gmapping)/maps/home.yaml"/> -->
+
 </launch>
 
